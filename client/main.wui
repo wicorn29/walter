@@ -19,7 +19,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠻⠶⠿⠿⠷⠷⠿⠿⠾⠶⠶⠶⠶⠿⠟⠁
 !-->
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
   
 
 <html lang="en">
@@ -141,6 +141,15 @@ selectFolderBtn.addEventListener('click', async () => {
         break;
       }
     }
+
+    // clear existing .fetched to avoid stale permission issues
+    try {
+      const existingFetched = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
+      for await (const e of existingFetched.values()) {
+        await existingFetched.removeEntry(e.name, { recursive: true });
+      }
+      await launcherFolderHandle.removeEntry(".fetched", { recursive: true });
+    } catch {}
 
     if (!walterFound) {
       alert("ERROR: walter.html was not found.\nPlease select the correct Walter Launcher folder.");
