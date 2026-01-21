@@ -1,1 +1,341 @@
-<h1>hi</h1>
+<!--
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠛⣧
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠛⢠⡀⠸⣆⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⡁⢰⣋⡇⠀⡿⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⣀⣀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠁⣏⠉⠛⠳⢤⣟⠀⢧⠀⠀⣀⣤⣠⣤⣄⣀⠀⠀⢷⠀⠀⠈⠙⠢⣄
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡔⠃⣀⠘⢆⣀⠀⠀⠉⠀⠘⠚⠉⠀⠀⢀⡀⠀⢸⠇⣀⢸⡀⠀⠀⠀⠀⠈⢧
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠙⡾⠟⣷⠂⠉⠀⠀⠀⠀⠀⠀⠀⢶⢚⣹⠃⢠⡏⠀⡏⠹⠃⠀⠀⠀⠀⠀⢸⡆
+⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣼⠇⣰⠀⠀⠀⠠⠶⠳⣦⠀⠀⠀⠘⠲⠃⢠⠟⠁⠀⡏⠀⠀⠀⠀⠀⠀⠀⢸⡇
+⠈⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⡟⠷⠟⠁⠀⠀⣴⡆⠀⢸⡇⠀⠀⢠⣄⡴⠏⠀⡀⢰⠇⠀⠀⠀⠀⠀⠀⢠⡾⠚⠋⠉⠉⢳⡀
+⠀⢹⡌⠙⢷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⢧⡐⠶⠄⠀⠀⠻⣃⡀⠸⡷⠀⠀⠀⠹⣆⠀⢀⡿⡏⠀⠀⠀⠀⠀⠀⣠⡾⠀⠀⠀⢀⡴⠟⠁
+⠀⠀⢷⠀⠀⠻⣷⣄⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⠙⠦⣤⣀⡀⠀⠘⠿⠇⠀⣤⠴⣶⣞⣁⣠⣾⡀⠀⠀⣤⣠⣴⠶⢾⣁⣧⠀⠀⠀⠈⢧⡤⠖⠚⠦⣄⡀⠀
+⠀⠀⠘⡇⠀⠀⠈⠻⣷⡀⠀⠀⣠⢾⡉⢉⡍⠙⠳⣶⢟⣯⣭⠿⠷⣤⡀⣠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠛⠚⠻⠀⠀⠀⠀⠈⣇⠀⠀⠀⠀⠙⣦
+⠀⠀⠀⢹⡀⠀⠀⠀⢿⣧⠀⠀⢧⣸⡀⠘⣇⣴⠀⠀⢘⠛⠛⠀⣰⠊⠻⠁⠀⠀⠀⠀⠀w29 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣤⣄⣄⡓⣶⠏
+⠀⠀⠀⠀⣧⠀⠀⠀⠈⣿⣆⣠⣤⣭⡭⠿⣹⣿⡋⠉⠛⠓⠒⠴⠃⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣇⠈⠙⠛⠁⠀
+⠀⠀⠀⠀⠈⠳⣄⠀⠀⠸⣿⠉⠀⠈⢻⠞⠙⡾⠁⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣀⣀⣀⣀⣀⣀⣀⣬⠷⠶⠤⢤⣤⣄⣀⣀⣤⣄⡀⣰⠤⢽⠆
+⠀⠀⠀⠀⠀⠀⠈⠳⣄⠀⢿⣧⠀⠀⠘⠷⠾⠷⣼⣅⣀⣀⠀⠀⠀⠀⠀⠀⠸⡅⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⡈⡿⣄⣀⣀⣀⣀⣀⣈⣳⣍⠉⠉⠛⢿⡛⢦⡼⠛⠛
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠻⠶⠿⠿⠷⠷⠿⠿⠾⠶⠶⠶⠶⠿⠟⠁
+!-->
+
+<!DOCTYPE html> 
+  
+/* ---------- in the beginning ---------- */
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wicorn29 InDev Client</title>
+<style>
+body {
+  background: #36393f;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+button, input {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+button {
+  background-color: #7289da;
+  color: #fff;
+  cursor: pointer;
+}
+.log {
+  margin-top: 15px;
+  color: #99aab5;
+  max-width: 520px;
+}
+.warning {
+  color: #ff5555;
+  font-weight: bold;
+}
+#barredReason {
+  margin-top: 15px;
+  color: #ff5555;
+  font-weight: bold;
+  max-width: 520px;
+  white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+<h1>Walter Indev Launcher</h1>
+
+<div class="log">
+  Step 1: Select the folder where <strong>Walter Launcher</strong> is installed.<br>
+  The folder must contain <code>walter.html</code>.
+</div>
+
+<button id="selectFolderBtn">Select Launcher Folder</button>
+
+<div class="log">
+  Step 2: Select your certificate file (.crt).<br>
+  DO NOT share this file with other people.<br>
+  DO NOT use another persons crt.
+</div>
+
+<input type="file" id="certFile" accept=".crt">
+<button id="getWapBtn" disabled>Launch Walter</button>
+
+<div class="log" id="log"></div>
+<div id="barredReason"></div>
+
+<script src="https://stuk.github.io/jszip/dist/jszip.min.js"></script>
+<script>
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function getServerBase() {
+  const r = await fetch("https://raw.githubusercontent.com/wicorn29/walter/refs/heads/main/client/wheredaserverat");
+  if (!r.ok) throw new Error("failed to locate server :(");
+  return (await r.text()).trim();
+}
+
+/* ---------- first time warning (non-pro, localstorage) ---------- */
+const ACK_KEY = "w29_ack_v2";
+if (localStorage.getItem(ACK_KEY) !== "1") {
+  alert(
+`POLICY VIOLATION NOTICE
+
+This project directly violates the SSD Tech Policy. There is no loophole or exception. If you are not okay with that, stop reading and close this tab.
+
+Here is what is happening, simplified. Walter uses a buffer overflow exploit. ChromeOS does not fully protect memory integrity. When system memory is intentionally saturated, allocations overflow into system ram. At that point the running Chrome instance is modified and a debugger is forcibly attached. That debugger is then used to inject Walter directly into system memory and keep it running with elevated permission.
+
+This WILL undoubtedly cause instability. Freezes, crashes, forced logouts, and data loss are expected. Do not run Walter while you have unsaved schoolwork, tests, or anything important open.
+
+This message will never show again.`
+  );
+  localStorage.setItem(ACK_KEY, "1");
+}
+
+/* ---------- state ---------- */
+let launcherFolderHandle = null;
+
+const selectFolderBtn = document.getElementById('selectFolderBtn');
+const certInput = document.getElementById('certFile');
+const getWapBtn = document.getElementById('getWapBtn');
+const logDiv = document.getElementById('log');
+const barredReasonDiv = document.getElementById('barredReason');
+
+/* ---------- folder pick ---------- */
+selectFolderBtn.addEventListener('click', async () => {
+  try {
+    launcherFolderHandle = await window.showDirectoryPicker();
+
+    let walterFound = false;
+    for await (const entry of launcherFolderHandle.values()) {
+      if (entry.kind === "file" && entry.name === "walter.html") {
+        walterFound = true;
+        break;
+      }
+    }
+
+    if (!walterFound) {
+      alert("ERROR: walter.html was not found.\nPlease select the correct Walter Launcher folder.");
+      launcherFolderHandle = null;
+      return;
+    }
+
+    logDiv.textContent = `Selected folder: ${launcherFolderHandle.name}`;
+    barredReasonDiv.textContent = "";
+
+    if (launcherFolderHandle.name !== "Walter Launcher") {
+      const warn = document.createElement("div");
+      warn.className = "warning";
+      warn.textContent = "Warning: This folder does not appear to be the default Walter Launcher folder. Please double-check.";
+      logDiv.appendChild(warn);
+    }
+
+    getWapBtn.disabled = false;
+
+  } catch {
+    logDiv.textContent = "Folder selection cancelled.";
+  }
+});
+
+/* ---------- download and extract ---------- */
+getWapBtn.addEventListener('click', async () => {
+  barredReasonDiv.textContent = "";
+  if (!certInput.files[0]) {
+    alert("Please select your certificate file (.crt).");
+    return;
+  }
+
+    logDiv.textContent = "Locating server…";
+    // clear any previous appended warnings (if any), and i am tired of fancy coments
+    Array.from(logDiv.querySelectorAll('.warning')).forEach(e => e.remove());
+
+    let serverBase = "";
+    try {
+      serverBase = await getServerBase();
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout
+      try {
+        await fetch(serverBase, { method: "HEAD", signal: controller.signal });
+      } catch (err) {
+        console.warn("server ping failed, continuing anyway:", err);
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    } catch (err) {
+      console.warn("failed to fetch server base:", err);
+      logDiv.textContent = "could not locate server, proceeding anyway.";
+    }
+
+  try {
+    logDiv.textContent = "Authenticating…";
+    await sleep(1200);
+
+    const loginResp = await fetch(serverBase + "/login", {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: await certInput.files[0].text()
+    });
+
+    let loginData = null;
+    try {
+      loginData = await loginResp.json();
+    } catch {}
+
+    await sleep(800);
+    if (!loginResp.ok) {
+      // get rekd lel
+      try {
+        const doomed = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
+        for await (const e of doomed.values()) {
+          await doomed.removeEntry(e.name, { recursive: true });
+        }
+        await launcherFolderHandle.removeEntry(".fetched", { recursive: true });
+      } catch {}
+
+      let alertMsg = "";
+      if (loginResp.status === 400) {
+        alertMsg = "bad certificate.\n\n";
+      } else if (loginResp.status === 403) {
+        alertMsg = "access barred.\n\n";
+      } else {
+        alertMsg = "access barred.\n\nyour certificate was rejected or access was revoked.";
+      }
+      if ((loginResp.status === 400 || loginResp.status === 403) && loginData && loginData.message) {
+        barredReasonDiv.textContent = "reason: " + loginData.message;
+        alert(alertMsg + loginData.message);
+      } else {
+        alert(alertMsg);
+      }
+      logDiv.textContent = "access barred.";
+      return;
+    }
+//                                                                        --- tired from this point on ---
+    logDiv.textContent = "Downloading WAP…";
+    await sleep(1000);
+
+    const dl = await fetch(serverBase + "/download", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session: loginData.session })
+    });
+
+    if (!dl.ok) {
+      let dlData = null;
+      try {
+        dlData = await dl.json();
+      } catch {}
+
+      // barred during download
+      try {
+        const doomed = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
+        for await (const e of doomed.values()) {
+          await doomed.removeEntry(e.name, { recursive: true });
+        }
+        await launcherFolderHandle.removeEntry(".fetched", { recursive: true });
+      } catch {}
+
+      let alertMsg = "download blocked.\n\naccess was revoked while fetching the project. local extracted data has been deleted.";
+      if (dl.status === 403 && dlData && dlData.message) {
+        barredReasonDiv.textContent = "reason: " + dlData.message;
+        switch (dlData.message.toLowerCase()) {
+          case "invalid certificate":
+            alertMsg = "download blocked.\n\nthe certificate you provided is invalid.";
+            break;
+          case "barred":
+            alertMsg = "download blocked.\n\nyour access has been barred.";
+            break;
+          case "invalid session":
+            alertMsg = "download blocked.\n\nyour session is invalid. please reauthenticate.";
+            break;
+          case "session expired":
+            alertMsg = "download blocked.\n\nyour session has expired. please login again.";
+            break;
+        }
+        alert(alertMsg + "\n\nreason: " + dlData.message);
+      } else {
+        alert(alertMsg);
+      }
+      logDiv.textContent = "download blocked.";
+      return;
+    }
+
+    const zip = await JSZip.loadAsync(await dl.blob());
+    const fetched = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: true });
+
+    for await (const e of fetched.values()) {
+      await fetched.removeEntry(e.name, { recursive: true });
+    }
+
+    async function write(handle, path, data) {
+      const parts = path.split("/");
+      const name = parts.shift();
+      if (!parts.length) {
+        const fh = await handle.getFileHandle(name, { create: true });
+        const w = await fh.createWritable();
+        await w.write(data);
+        await w.close();
+      } else {
+        const dh = await handle.getDirectoryHandle(name, { create: true });
+        await write(dh, parts.join("/"), data);
+      }
+    }
+
+    logDiv.textContent = "Extracting files…";
+    await sleep(800);
+    for (const p in zip.files) {
+      const f = zip.files[p];
+      if (!f.dir) {
+        await write(fetched, p, await f.async("uint8array"));
+      }
+    }
+
+    let indexExists = false;
+    for await (const e of fetched.values()) {
+      if (e.name === "index.html") indexExists = true;
+    }
+
+    if (!indexExists) {
+      alert("error: .fetched/index.html does not exist.\nextraction failed or incorrect folder selected.");
+      return;
+    }
+
+    logDiv.textContent = "Launching Walter…";
+    await sleep(1200);
+    window.location.href = "./.fetched/index.html";
+
+  } catch (err) {
+    alert("fatal error: " + err.message);
+  }
+});
+</script>
+</body>
+</html>
