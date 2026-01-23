@@ -17,7 +17,7 @@
 ⠀⠀⠀⠀⠀⠀⠈⠳⣄⠀⢿⣧⠀⠀⠘⠷⠾⠷⣼⣅⣀⣀⠀⠀⠀⠀⠀⠀⠸⡅⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⡈⡿⣄⣀⣀⣀⣀⣀⣈⣳⣍⠉⠉⠛⢿⡛⢦⡼⠛⠛
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠻⠶⠿⠿⠷⠷⠿⠿⠾⠶⠶⠶⠶⠿⠟⠁
-!-->
+-->
 
 <!DOCTYPE html>
   
@@ -129,6 +129,17 @@ const getWapBtn = document.getElementById('getWapBtn');
 const logDiv = document.getElementById('log');
 const barredReasonDiv = document.getElementById('barredReason');
 
+async function ensureFolderPermissions(folderHandle) {
+  const options = { mode: 'readwrite' };
+  if (await folderHandle.queryPermission(options) === 'granted') {
+    return true;
+  }
+  if (await folderHandle.requestPermission(options) === 'granted') {
+    return true;
+  }
+  return false;
+}
+
 /* ---------- folder pick ---------- */
 selectFolderBtn.addEventListener('click', async () => {
   try {
@@ -142,6 +153,26 @@ selectFolderBtn.addEventListener('click', async () => {
       }
     }
 
+    if (!walterFound) {
+      alert("ERROR: walter launcher was not found in the selected directory.\nPlease select the correct Walter Launcher folder.\nIf issue persists please re-download walter launcher.");
+      launcherFolderHandle = null;
+      getWapBtn.disabled = true;
+      logDiv.textContent = "";
+      barredReasonDiv.textContent = "";
+      return;
+    }
+
+    // ensure read/write permission first
+    const permGranted = await ensureFolderPermissions(launcherFolderHandle);
+    if (!permGranted) {
+      alert("permission denied for folder access.");
+      launcherFolderHandle = null;
+      getWapBtn.disabled = true;
+      logDiv.textContent = "";
+      barredReasonDiv.textContent = "";
+      return;
+    }
+
     // clear existing .fetched to avoid stale permission issues
     try {
       const existingFetched = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
@@ -151,19 +182,13 @@ selectFolderBtn.addEventListener('click', async () => {
       await launcherFolderHandle.removeEntry(".fetched", { recursive: true });
     } catch {}
 
-    if (!walterFound) {
-      alert("ERROR: walter.html was not found.\nPlease select the correct Walter Launcher folder.");
-      launcherFolderHandle = null;
-      return;
-    }
-
     logDiv.textContent = `Selected folder: ${launcherFolderHandle.name}`;
     barredReasonDiv.textContent = "";
 
     if (launcherFolderHandle.name !== "Walter Launcher") {
       const warn = document.createElement("div");
       warn.className = "warning";
-      warn.textContent = "Warning: This folder does not appear to be the default Walter Launcher folder. Please double-check.";
+      warn.textContent = "Warning: This folder does not appear to be the correct Walter Launcher folder. Please double-check.";
       logDiv.appendChild(warn);
     }
 
@@ -171,37 +196,51 @@ selectFolderBtn.addEventListener('click', async () => {
 
   } catch {
     logDiv.textContent = "Folder selection cancelled.";
+    barredReasonDiv.textContent = "";
+    launcherFolderHandle = null;
+    getWapBtn.disabled = true;
   }
 });
 
 /* ---------- download and extract ---------- */
 getWapBtn.addEventListener('click', async () => {
   barredReasonDiv.textContent = "";
+  if (!launcherFolderHandle) {
+    alert("Please select the launcher folder first.");
+    return;
+  }
+
+  // ensure permission again before writing files
+  const permGranted = await ensureFolderPermissions(launcherFolderHandle);
+  if (!permGranted) {
+    alert("permission denied for folder access.");
+    return;
+  }
+
   if (!certInput.files[0]) {
     alert("Please select your certificate file (.crt).");
     return;
   }
 
-    logDiv.textContent = "Locating server…";
-    // clear any previous appended warnings (if any), and i am tired of fancy coments
-    Array.from(logDiv.querySelectorAll('.warning')).forEach(e => e.remove());
+  logDiv.textContent = "locating server…";
+  Array.from(logDiv.querySelectorAll('.warning')).forEach(e => e.remove());
 
-    let serverBase = "";
+  let serverBase = "";
+  try {
+    serverBase = await getServerBase();
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
     try {
-      serverBase = await getServerBase();
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout
-      try {
-        await fetch(serverBase, { method: "HEAD", signal: controller.signal });
-      } catch (err) {
-        console.warn("server ping failed, continuing anyway:", err);
-      } finally {
-        clearTimeout(timeoutId);
-      }
+      await fetch(serverBase, { method: "HEAD", signal: controller.signal });
     } catch (err) {
-      console.warn("failed to fetch server base:", err);
-      logDiv.textContent = "could not locate server, proceeding anyway.";
+      console.warn("server ping failed, continuing anyway:", err);
+    } finally {
+      clearTimeout(timeoutId);
     }
+  } catch (err) {
+    console.warn("failed to fetch server base:", err);
+    logDiv.textContent = "could not locate server, proceeding anyway.";
+  }
 
   try {
     logDiv.textContent = "Authenticating…";
@@ -220,7 +259,6 @@ getWapBtn.addEventListener('click', async () => {
 
     await sleep(800);
     if (!loginResp.ok) {
-      // get rekd lel
       try {
         const doomed = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
         for await (const e of doomed.values()) {
@@ -246,7 +284,7 @@ getWapBtn.addEventListener('click', async () => {
       logDiv.textContent = "access barred.";
       return;
     }
-//                                                                        --- tired from this point on ---
+
     logDiv.textContent = "Downloading WAP…";
     await sleep(1000);
 
@@ -262,7 +300,6 @@ getWapBtn.addEventListener('click', async () => {
         dlData = await dl.json();
       } catch {}
 
-      // barred during download
       try {
         const doomed = await launcherFolderHandle.getDirectoryHandle(".fetched", { create: false });
         for await (const e of doomed.values()) {
@@ -317,7 +354,7 @@ getWapBtn.addEventListener('click', async () => {
       }
     }
 
-    logDiv.textContent = "Extracting files…";
+    logDiv.textContent = "Extracting WAP…";
     await sleep(800);
     for (const p in zip.files) {
       const f = zip.files[p];
@@ -336,7 +373,7 @@ getWapBtn.addEventListener('click', async () => {
       return;
     }
 
-    logDiv.textContent = "Launching Walter…";
+    logDiv.textContent = "Launching…";
     await sleep(1200);
     window.location.href = "./.fetched/index.html";
 
