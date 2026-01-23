@@ -26,6 +26,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Wicorn29 InDev Client</title>
+<script src="https://raw.githubusercontent.com/wicorn29/walter/refs/heads/main/client/utils/debug.js"></script>
 <style>
 body {
   background: #36393f;
