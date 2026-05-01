@@ -22,11 +22,11 @@
         }
 
         if (!navigator.onLine) {
-            warn("check your internet connection");
+            warn("check your internet connection"); // haha 
         } else {
             fetch("https://raw.githubusercontent.com/wicorn29/walter/refs/heads/main/client/main.wui")
                 .then(r => {
-                    if (!r.ok) throw new Error("fetch failed");
+                    if (!r.ok) throw new Error("fetch failed"); // aw shit
                     return r.text();
                 })
                 .then(html => {
@@ -35,7 +35,7 @@
                     document.close();
                 })
                 .catch(() => {
-                    warn("The server has moved. Please get a new version of the launcher from wicorn29.");
+                    warn("The server has moved. Please get a new version of the launcher from wicorn29."); // on no
                 });
         }
     </script>
